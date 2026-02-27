@@ -1,0 +1,124 @@
+Car Selling Web App — Project Overview
+🎯 Project Goal
+Build a simple car marketplace web application where users can browse cars for sale and an admin can manage listings using CRUD operations.
+The app uses MockAPI as the backend service.
+
+🧱 Data Model (Single Entity)
+Car Object
+{
+ "title": "Toyota Corolla 2018",
+ "brand": "Toyota",
+ "model": "Corolla",
+ "year": 2018,
+ "price": 8500,
+ "mileage": 72000,
+ "fuelType": "Petrol",
+ "transmission": "Automatic",
+ "image": "https://example.com/car.jpg",
+ "description": "Well maintained, single owner, no accident history.",
+ "status": "available",
+ "createdAt": "2026-02-27T10:00:00Z"
+}
+This single model supports full CRUD functionality.
+
+👥 User Roles
+👤 Client (Public User)
+Can:
+View all car listings
+View car details
+See price & specifications
+Contact seller (display info)
+Cannot:
+Add/edit/delete cars
+
+🔐 Admin (Simulated Login)
+Admin credentials (hardcoded):
+email: admin@mail.com
+password: 123456
+After login → save admin state in localStorage.
+Admin can:
+➕ Add new car listings
+✏️ Edit car details
+❌ Delete listings
+✅ Mark car as SOLD
+
+🌐 Client Interface
+Displays:
+car image
+title
+price
+year & mileage
+status badge (Available / Sold)
+view details button
+
+📄 Car Details Page
+Shows:
+large image
+full description
+specs (year, fuel, transmission)
+price
+seller contact info
+
+🔐 Admin Dashboard
+Features
+➕ Add Car
+Form fields:
+title
+brand & model
+year
+price
+mileage
+fuel type
+transmission
+image URL
+description
+status
+📋 Manage Cars
+Table/list view with:
+edit button
+delete button
+mark as sold
+✏️ Edit Car
+Update existing listing.
+❌ Delete Car
+Remove listing from API.
+
+🔌 API Integration
+Base endpoint example:
+https://YOUR_PROJECT.mockapi.io/cars
+GET → fetch listings
+POST → add car
+PUT/PATCH → update car
+DELETE → remove car
+
+🧭 Suggested Pages Structure
+/            -> Car listings ( Client landing page)
+/car/:id     -> Car details
+
+/admin/login -> Admin login
+/admin       -> Dashboard
+/admin/add   -> Add car
+/admin/edit/:id -> Edit car
+ /admin/view/:id -> View car detail
+
+🎯 Core Functional Requirements
+✅ View car listings
+✅ View car details
+✅ Add new car (admin)
+✅ Edit car (admin)
+✅ Delete car (admin)
+✅ Mark car as sold
+✅ Data stored via API
+
+🎨 UI Suggestions
+Clean card layout
+Green badge → Available
+Red badge → Sold
+Responsive design
+Tailwind CSS styling
+Use Shadcn ui component
+Use motion for animation
+Use lucide-react for icons 
+Use axios 
+Use react-router-dom for page navigation
+
