@@ -279,14 +279,14 @@ export const CarForm = () => {
             variant="outline"
             onClick={() => navigate("/admin/dashboard/cars")}
             disabled={saving}
-            className="cursor-pointer w-40"
+            className="cursor-pointer w-40 h-10"
           >
             Cancel
           </Button>
           <Button
             type="submit"
             disabled={saving}
-            className="cursor-pointer gap-2 w-40"
+            className="cursor-pointer gap-2 w-40 h-10"
           >
             {saving && <Loader className="h-4 w-4 animate-spin" />}
             {isNew ? "Add Car" : "Save Changes"}

@@ -93,7 +93,7 @@ export const ManageCars = () => {
           </p>
         </div>
         <Link to="/admin/dashboard/cars/new">
-          <Button className="gap-2 cursor-pointer">
+          <Button className="gap-2 cursor-pointer w-32 h-10">
             <Plus className="h-4 w-4" />
             Add Car
           </Button>

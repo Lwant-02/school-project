@@ -93,7 +93,7 @@ export const AdminCarDetail = () => {
           {car.title}
         </h1>
         <Link to={`/admin/dashboard/cars/${car.id}`}>
-          <Button size="sm" className="gap-2 cursor-pointer">
+          <Button className="gap-2 cursor-pointer w-32 h-10">
             <Pencil className="h-3.5 w-3.5" /> Edit
           </Button>
         </Link>
