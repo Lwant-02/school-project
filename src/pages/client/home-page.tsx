@@ -1,12 +1,12 @@
 import { useRef, useMemo, useState, useEffect } from "react";
-import Navbar from "@/components/client/navbar";
 import HeroSection from "@/components/client/hero-section";
 import FilterBar, { type FilterState } from "@/components/client/filter-bar";
 import CarGrid from "@/components/client/car-grid";
-import Footer from "@/components/client/footer";
 import { getCars } from "@/api/cars";
 import type { Car } from "@/types/car";
 import { Loader } from "lucide-react";
+import Navbar from "@/components/client/Navbar";
+import Footer from "@/components/client/Footer";
 
 // MockAPI returns `createdAt` as Unix seconds (e.g. 1740739443).
 // JS Date() expects ms, so we multiply by 1000 when the value is < 1e10.
