@@ -127,4 +127,7 @@
   .layout {
     @apply px-8 sm:px-14 lg:px-20 mx-auto;
   }
+  .btn{
+    @apply h-10 focus:ring-1! rounded-sm;
+  }
 }

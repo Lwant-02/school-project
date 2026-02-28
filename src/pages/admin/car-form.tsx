@@ -1,0 +1,298 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "motion/react";
+import { ArrowLeft, Loader } from "lucide-react";
+import { getCarById, createCar, updateCar } from "@/api/cars";
+import type { Car, FuelType, Transmission, CarStatus } from "@/types/car";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+type FormData = Omit<Car, "id" | "createdAt">;
+
+const empty: FormData = {
+  title: "",
+  brand: "",
+  model: "",
+  year: new Date().getFullYear(),
+  price: 0,
+  mileage: 0,
+  fuelType: "Petrol",
+  transmission: "Automatic",
+  image: "",
+  description: "",
+  status: "available",
+};
+
+const Field = ({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) => (
+  <div className="space-y-1.5">
+    <label className="text-sm font-medium text-foreground">{label}</label>
+    {children}
+  </div>
+);
+
+export const CarForm = () => {
+  const { id } = useParams<{ id: string }>();
+  const isNew = id === "new";
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState<FormData>(empty);
+  const [loading, setLoading] = useState(!isNew);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isNew) return;
+    getCarById(id!)
+      .then((car) => {
+        const { id: _id, createdAt: _ca, ...rest } = car;
+        setForm(rest);
+      })
+      .catch(() => setError("Failed to load car."))
+      .finally(() => setLoading(false));
+  }, [id, isNew]);
+
+  const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSaving(true);
+    try {
+      if (isNew) {
+        await createCar(form);
+      } else {
+        await updateCar(id!, form);
+      }
+      navigate("/admin/dashboard/cars");
+    } catch {
+      setError("Failed to save car. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <Loader className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full px-5">
+      <div className="flex items-center gap-3 mb-6">
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          onClick={() => navigate("/admin/dashboard/cars")}
+          className="cursor-pointer shrink-0"
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </Button>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">
+            {isNew ? "Add New Car" : "Edit Car"}
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {isNew
+              ? "Fill in the details below."
+              : "Update the listing details."}
+          </p>
+        </div>
+      </div>
+
+      {error && <p className="text-sm text-destructive mb-4">{error}</p>}
+
+      <motion.form
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        onSubmit={handleSubmit}
+        className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-sm"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Field label="Title">
+            <Input
+              value={form.title}
+              onChange={(e) => set("title", e.target.value)}
+              placeholder="Toyota Corolla 2018"
+              required
+              className="btn"
+            />
+          </Field>
+          <Field label="Brand">
+            <Input
+              value={form.brand}
+              onChange={(e) => set("brand", e.target.value)}
+              placeholder="Toyota"
+              required
+              className="btn"
+            />
+          </Field>
+          <Field label="Model">
+            <Input
+              value={form.model}
+              onChange={(e) => set("model", e.target.value)}
+              placeholder="Corolla"
+              required
+              className="btn"
+            />
+          </Field>
+          <Field label="Year">
+            <Input
+              type="number"
+              value={form.year}
+              onChange={(e) => set("year", Number(e.target.value))}
+              min={1900}
+              max={new Date().getFullYear() + 1}
+              required
+              className="btn"
+            />
+          </Field>
+          <Field label="Price ($)">
+            <Input
+              type="number"
+              value={form.price}
+              onChange={(e) => set("price", Number(e.target.value))}
+              min={0}
+              required
+              className="btn"
+            />
+          </Field>
+          <Field label="Mileage (km)">
+            <Input
+              type="number"
+              value={form.mileage}
+              onChange={(e) => set("mileage", Number(e.target.value))}
+              min={0}
+              required
+              className="btn"
+            />
+          </Field>
+
+          <Field label="Fuel Type">
+            <Select
+              value={form.fuelType}
+              onValueChange={(v) => set("fuelType", v as FuelType)}
+            >
+              <SelectTrigger className="h-10! w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {(["Petrol", "Diesel", "Electric", "Hybrid"] as FuelType[]).map(
+                  (f) => (
+                    <SelectItem key={f} value={f}>
+                      {f}
+                    </SelectItem>
+                  ),
+                )}
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Field label="Transmission">
+            <Select
+              value={form.transmission}
+              onValueChange={(v) => set("transmission", v as Transmission)}
+            >
+              <SelectTrigger className="h-10! w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {(["Automatic", "Manual"] as Transmission[]).map((t) => (
+                  <SelectItem key={t} value={t}>
+                    {t}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Field label="Status">
+            <Select
+              value={form.status}
+              onValueChange={(v) => set("status", v as CarStatus)}
+            >
+              <SelectTrigger className="h-10! w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="available">Available</SelectItem>
+                <SelectItem value="sold">Sold</SelectItem>
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Field label="Image URL">
+            <Input
+              value={form.image}
+              onChange={(e) => set("image", e.target.value)}
+              placeholder="https://example.com/car.jpg"
+              className="h-10"
+            />
+          </Field>
+        </div>
+
+        <Field label="Description">
+          <textarea
+            value={form.description}
+            onChange={(e) => set("description", e.target.value)}
+            placeholder="Well maintained, single owner…"
+            rows={4}
+            className="w-full rounded-sm focus:right-1! border px-3 py-2 text-foreground resize-none"
+          />
+        </Field>
+
+        {/* Image preview */}
+        {form.image && (
+          <div className="rounded-lg border border-border overflow-hidden h-52">
+            <img
+              src={form.image}
+              alt="Preview"
+              className="h-full w-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = "none";
+              }}
+            />
+          </div>
+        )}
+
+        <div className="flex gap-3 pt-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => navigate("/admin/dashboard/cars")}
+            disabled={saving}
+            className="cursor-pointer w-40"
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            disabled={saving}
+            className="cursor-pointer gap-2 w-40"
+          >
+            {saving && <Loader className="h-4 w-4 animate-spin" />}
+            {isNew ? "Add Car" : "Save Changes"}
+          </Button>
+        </div>
+      </motion.form>
+    </div>
+  );
+};

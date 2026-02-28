@@ -1,5 +1,5 @@
 import type { Car } from "@/types/car";
-import CarCard from "./CarCard";
+import CarCard from "./car-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SearchX } from "lucide-react";
 import { motion } from "motion/react";

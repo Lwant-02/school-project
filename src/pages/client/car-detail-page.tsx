@@ -18,9 +18,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { mockCars } from "@/data/mockCars";
+import { getCarById } from "@/api/cars";
 import type { Car as CarType } from "@/types/car";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const fuelIcon = (fuel: CarType["fuelType"]) =>
   fuel === "Electric" ? (
@@ -48,7 +48,28 @@ const specItem = (
 const CarDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const car = mockCars.find((c) => c.id === id);
+  const [car, setCar] = useState<CarType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (id) {
+      getCarById(id)
+        .then(setCar)
+        .catch((err) => console.error("Failed to load car", err))
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   /* 404 state */
   if (!car) {
@@ -67,10 +88,6 @@ const CarDetailPage = () => {
   }
 
   const isSold = car.status === "sold";
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

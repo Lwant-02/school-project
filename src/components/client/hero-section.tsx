@@ -64,7 +64,7 @@ const HeroSection = ({ onScrollToListings }: HeroSectionProps) => {
           <Button
             onClick={onScrollToListings}
             size="lg"
-            className="gap-2 rounded-full bg-white px-7 text-sm font-semibold text-zinc-900 shadow-lg hover:bg-zinc-100"
+            className="gap-2 cursor-pointer rounded-full bg-white px-7 text-sm font-semibold text-zinc-900 shadow-lg hover:bg-zinc-100"
           >
             View All Listings
             <ArrowUpRight className="h-4 w-4" />
