@@ -68,21 +68,21 @@ export const DashboardHome = () => {
   useEffect(() => {
     getCars()
       .then(setCars)
-      .catch(() => setError("Failed to load cars"))
+      .catch(() => setError("โหลดข้อมูลรถยนต์ล้มเหลว"))
       .finally(() => setLoading(false));
   }, []);
 
   const available = cars.filter((c) => c.status === "available").length;
   const sold = cars.filter((c) => c.status === "sold").length;
-  const recent = cars.slice(0, 5);
+  const recent = cars.slice(0, 10);
 
   return (
     <div className="space-y-8 px-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Overview</h1>
+          <h1 className="text-2xl font-bold text-foreground">ภาพรวม</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            A quick look at your fleet today.
+            ภาพรวมรถยนต์ของคุณในวันนี้
           </p>
         </div>
       </div>
@@ -97,21 +97,21 @@ export const DashboardHome = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard
-            label="Total Listings"
+            label="รายการทั้งหมด"
             value={cars.length}
             icon={Car}
             color="bg-primary/10 text-primary"
             delay={0}
           />
           <StatCard
-            label="Available"
+            label="มีจำหน่าย"
             value={available}
             icon={CheckCircle2}
             color="bg-green-500/10 text-green-600"
             delay={0.07}
           />
           <StatCard
-            label="Sold"
+            label="ขายแล้ว"
             value={sold}
             icon={XCircle}
             color="bg-red-500/10 text-red-500"
@@ -124,13 +124,13 @@ export const DashboardHome = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-foreground">
-            Recent Listings
+            รายการล่าสุด
           </h2>
           <Link
             to="/admin/dashboard/cars"
             className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
           >
-            View all <ArrowRight className="h-3.5 w-3.5" />
+            ดูทั้งหมด <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
@@ -147,13 +147,13 @@ export const DashboardHome = () => {
             <Table>
               <TableHeader>
                 <TableRow className="bg-muted/50">
-                  <TableHead className="w-16">Image</TableHead>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Brand</TableHead>
-                  <TableHead>Year</TableHead>
-                  <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableHead className="w-16">รูปภาพ</TableHead>
+                  <TableHead>ชื่อรุ่น</TableHead>
+                  <TableHead>ยี่ห้อ</TableHead>
+                  <TableHead>ปี</TableHead>
+                  <TableHead>ราคา</TableHead>
+                  <TableHead>สถานะ</TableHead>
+                  <TableHead className="text-right">จัดการ</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -196,7 +196,7 @@ export const DashboardHome = () => {
                             : "bg-red-500/90 text-white hover:bg-red-500/90"
                         }
                       >
-                        {car.status === "available" ? "Available" : "Sold"}
+                        {car.status === "available" ? "มีจำหน่าย" : "ขายแล้ว"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
@@ -208,7 +208,7 @@ export const DashboardHome = () => {
                             className="cursor-pointer"
                           >
                             <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Open menu</span>
+                            <span className="sr-only">เปิดเมนู</span>
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-40">
@@ -219,7 +219,7 @@ export const DashboardHome = () => {
                             }
                           >
                             <Eye className="h-4 w-4 mr-2" />
-                            View
+                            ดูข้อมูล
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             className="cursor-pointer"
@@ -228,7 +228,7 @@ export const DashboardHome = () => {
                             }
                           >
                             <Pencil className="h-4 w-4 mr-2" />
-                            Edit
+                            แก้ไข
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>

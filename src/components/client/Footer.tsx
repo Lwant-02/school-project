@@ -18,15 +18,15 @@ const Footer = () => {
               </span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground">
-              Your trusted marketplace for quality used vehicles. Transparent
-              pricing, honest listings.
+              แหล่งรวมรถยนต์มือสองคุณภาพที่เชื่อถือได้ ราคาโปร่งใส
+              แสดงข้อมูลตามจริง
             </p>
           </div>
 
           {/* Quick links */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide">
-              Quick Links
+              ลิงก์ด่วน
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
@@ -34,7 +34,7 @@ const Footer = () => {
                   to="/"
                   className="transition-colors hover:text-foreground"
                 >
-                  Browse Cars
+                  เลือกดูรถยนต์
                 </Link>
               </li>
               <li>
@@ -42,7 +42,7 @@ const Footer = () => {
                   to="/admin/login"
                   className="transition-colors hover:text-foreground"
                 >
-                  Admin Portal
+                  พอร์ทัลผู้ดูแลระบบ
                 </Link>
               </li>
             </ul>
@@ -51,7 +51,7 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide">
-              Contact Us
+              ติดต่อเรา
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
@@ -74,7 +74,7 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} AutoMarket. All rights reserved.
+            © {new Date().getFullYear()} AutoMarket. สงวนลิขสิทธิ์
           </p>
         </div>
       </div>

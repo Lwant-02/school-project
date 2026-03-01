@@ -77,11 +77,11 @@ const CarDetailPage = () => {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4">
         <Car className="h-16 w-16 text-muted-foreground" />
-        <h1 className="text-2xl font-bold">Car not found</h1>
+        <h1 className="text-2xl font-bold">ไม่พบรถยนต์</h1>
         <Link to="/">
           <Button variant="outline" className="gap-2">
             <ArrowLeft className="h-4 w-4" />
-            Back to listings
+            กลับไปที่รายการ
           </Button>
         </Link>
       </div>
@@ -114,7 +114,7 @@ const CarDetailPage = () => {
             className="absolute left-8 top-28 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 sm:left-14 lg:left-20"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back
+            กลับ
           </button>
 
           {/* Car info overlay — bottom left */}
@@ -135,11 +135,11 @@ const CarDetailPage = () => {
               >
                 {isSold ? (
                   <span className="flex items-center gap-1">
-                    <XCircle className="h-3 w-3" /> Sold
+                    <XCircle className="h-3 w-3" /> ขายแล้ว
                   </span>
                 ) : (
                   <span className="flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3" /> Available
+                    <CheckCircle2 className="h-3 w-3" /> มีจำหน่าย
                   </span>
                 )}
               </Badge>
@@ -189,7 +189,7 @@ const CarDetailPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h2 className="mb-3 text-xl font-bold">About This Car</h2>
+              <h2 className="mb-3 text-xl font-bold">เกี่ยวกับรถยนต์คันนี้</h2>
               <Separator className="mb-4" />
               <p className="leading-relaxed text-muted-foreground">
                 {car.description}
@@ -202,22 +202,26 @@ const CarDetailPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="mb-3 text-xl font-bold">Specifications</h2>
+              <h2 className="mb-3 text-xl font-bold">ข้อมูลจำเพาะ</h2>
               <Separator className="mb-4" />
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                {specItem(<Tag className="h-5 w-5" />, "Brand", car.brand)}
-                {specItem(<Car className="h-5 w-5" />, "Model", car.model)}
-                {specItem(<Calendar className="h-5 w-5" />, "Year", car.year)}
-                {specItem(fuelIcon(car.fuelType), "Fuel Type", car.fuelType)}
+                {specItem(<Tag className="h-5 w-5" />, "ยี่ห้อ", car.brand)}
+                {specItem(<Car className="h-5 w-5" />, "รุ่น", car.model)}
+                {specItem(<Calendar className="h-5 w-5" />, "ปี", car.year)}
+                {specItem(
+                  fuelIcon(car.fuelType),
+                  "ประเภทเชื้อเพลิง",
+                  car.fuelType,
+                )}
                 {specItem(
                   <Settings2 className="h-5 w-5" />,
-                  "Transmission",
+                  "ระบบเกียร์",
                   car.transmission,
                 )}
                 {specItem(
                   <Gauge className="h-5 w-5" />,
-                  "Mileage",
-                  `${car.mileage.toLocaleString()} km`,
+                  "ระยะทาง",
+                  `${car.mileage.toLocaleString()} กม.`,
                 )}
               </div>
             </motion.section>
@@ -232,7 +236,7 @@ const CarDetailPage = () => {
           >
             {/* Price card */}
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <p className="text-sm text-muted-foreground">Listing Price</p>
+              <p className="text-sm text-muted-foreground">ราคา</p>
               <p className="mt-1 text-3xl font-extrabold">
                 ${car.price.toLocaleString()}
               </p>
@@ -246,19 +250,19 @@ const CarDetailPage = () => {
                   className="w-full h-11 cursor-not-allowed"
                 >
                   <XCircle className="mr-2 h-4 w-4" />
-                  This Car Is Sold
+                  รถคันนี้ขายแล้ว
                 </Button>
               ) : (
                 <Button className="w-full h-11 gap-2">
                   <Phone className="h-4 w-4" />
-                  Contact Seller
+                  ติดต่อผู้ขาย
                 </Button>
               )}
             </div>
 
             {/* Seller contact info */}
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <h3 className="mb-4 font-semibold">Seller Contact</h3>
+              <h3 className="mb-4 font-semibold">ข้อมูลติดต่อผู้ขาย</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-center gap-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
@@ -285,7 +289,7 @@ const CarDetailPage = () => {
             <Link to="/">
               <Button variant="outline" className="w-full h-11 gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back to All Listings
+                กลับไปหน้ารวม
               </Button>
             </Link>
           </motion.aside>

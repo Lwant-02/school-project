@@ -16,12 +16,12 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   {
-    label: "Dashboard",
+    label: "แดชบอร์ด",
     href: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
-    label: "Manage Cars",
+    label: "จัดการรถยนต์",
     href: "/admin/dashboard/cars",
     icon: Car,
   },
@@ -44,14 +44,14 @@ export const AppSidebar = () => {
             <CarFront className="h-4 w-4" />
           </div>
           <span className="text-sm font-bold tracking-tight group-data-[collapsible=icon]:hidden">
-            AutoMarket Admin
+            ผู้ดูแลระบบ AutoMarket
           </span>
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel>เมนูหลัก</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="gap-2">
               {navItems.map((item) => {
@@ -86,7 +86,9 @@ export const AppSidebar = () => {
           onClick={handleLogout}
         >
           <LogOut className="h-4 w-4 shrink-0" />
-          <span className="group-data-[collapsible=icon]:hidden">Logout</span>
+          <span className="group-data-[collapsible=icon]:hidden">
+            ออกจากระบบ
+          </span>
         </Button>
       </SidebarFooter>
     </Sidebar>

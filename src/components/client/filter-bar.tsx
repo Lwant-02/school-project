@@ -72,7 +72,7 @@ const FilterBar = ({
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder="Search by title, brand or model…"
+              placeholder="ค้นหาตามชื่อรุ่น ยี่ห้อ..."
               className="pl-9 h-11 focus:ring-1!"
               value={filters.search}
               onChange={(e) => update({ search: e.target.value })}
@@ -94,7 +94,7 @@ const FilterBar = ({
             className="gap-2 shrink-0 h-11"
           >
             <SlidersHorizontal className="h-4 w-4" />
-            Filters
+            ตัวกรอง
             {hasActiveFilters && (
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-primary-foreground text-[10px] font-bold text-primary">
                 !
@@ -113,10 +113,10 @@ const FilterBar = ({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="newest">Newest First</SelectItem>
-              <SelectItem value="price-asc">Lowest Price</SelectItem>
-              <SelectItem value="price-desc">Highest Price</SelectItem>
-              <SelectItem value="mileage">Lowest Mileage</SelectItem>
+              <SelectItem value="newest">ใหม่ล่าสุด</SelectItem>
+              <SelectItem value="price-asc">ราคาต่ำสุด</SelectItem>
+              <SelectItem value="price-desc">ราคาสูงสุด</SelectItem>
+              <SelectItem value="mileage">เลขไมล์น้อยสุด</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -130,10 +130,10 @@ const FilterBar = ({
               onValueChange={(val) => update({ brand: val })}
             >
               <SelectTrigger className="w-40">
-                <SelectValue placeholder="Brand" />
+                <SelectValue placeholder="ยี่ห้อ" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Brands</SelectItem>
+                <SelectItem value="all">ทุกยี่ห้อ</SelectItem>
                 {BRANDS.map((b) => (
                   <SelectItem key={b} value={b}>
                     {b}
@@ -150,14 +150,14 @@ const FilterBar = ({
               }
             >
               <SelectTrigger className="w-36">
-                <SelectValue placeholder="Fuel type" />
+                <SelectValue placeholder="ประเภทเชื้อเพลิง" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Fuel Types</SelectItem>
-                <SelectItem value="Petrol">Petrol</SelectItem>
-                <SelectItem value="Diesel">Diesel</SelectItem>
-                <SelectItem value="Electric">Electric</SelectItem>
-                <SelectItem value="Hybrid">Hybrid</SelectItem>
+                <SelectItem value="all">ทุกประเภทเชื้อเพลิง</SelectItem>
+                <SelectItem value="Petrol">เบนซิน</SelectItem>
+                <SelectItem value="Diesel">ดีเซล</SelectItem>
+                <SelectItem value="Electric">ไฟฟ้า</SelectItem>
+                <SelectItem value="Hybrid">ไฮบริด</SelectItem>
               </SelectContent>
             </Select>
 
@@ -169,12 +169,12 @@ const FilterBar = ({
               }
             >
               <SelectTrigger className="w-40">
-                <SelectValue placeholder="Transmission" />
+                <SelectValue placeholder="ระบบเกียร์" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Transmissions</SelectItem>
-                <SelectItem value="Automatic">Automatic</SelectItem>
-                <SelectItem value="Manual">Manual</SelectItem>
+                <SelectItem value="all">ทุกระบบเกียร์</SelectItem>
+                <SelectItem value="Automatic">ออโต้</SelectItem>
+                <SelectItem value="Manual">ธรรมดา</SelectItem>
               </SelectContent>
             </Select>
 
@@ -186,12 +186,12 @@ const FilterBar = ({
               }
             >
               <SelectTrigger className="w-36">
-                <SelectValue placeholder="Status" />
+                <SelectValue placeholder="สถานะ" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="available">Available</SelectItem>
-                <SelectItem value="sold">Sold</SelectItem>
+                <SelectItem value="all">ทุกสถานะ</SelectItem>
+                <SelectItem value="available">มีจำหน่าย</SelectItem>
+                <SelectItem value="sold">ขายแล้ว</SelectItem>
               </SelectContent>
             </Select>
 
@@ -203,7 +203,7 @@ const FilterBar = ({
                 className="gap-1 text-muted-foreground"
               >
                 <X className="h-3.5 w-3.5" />
-                Clear all
+                ล้างทั้งหมด
               </Button>
             )}
           </div>
@@ -212,15 +212,15 @@ const FilterBar = ({
         {/* Results count */}
         <div className="mt-3 flex items-center gap-2">
           <span className="text-sm text-muted-foreground">
-            Showing{" "}
+            แสดง{" "}
             <span className="font-semibold text-foreground">
               {totalResults}
             </span>{" "}
-            {totalResults === 1 ? "car" : "cars"}
+            คัน
           </span>
           {hasActiveFilters && (
             <Badge variant="secondary" className="text-xs">
-              Filtered
+              กรองแล้ว
             </Badge>
           )}
         </div>

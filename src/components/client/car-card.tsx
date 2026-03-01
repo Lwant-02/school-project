@@ -45,7 +45,7 @@ const CarCard = ({ car, index }: CarCardProps) => {
                   : "bg-green-500/90 text-white hover:bg-green-500/90"
               }
             >
-              {isSold ? "Sold" : "Available"}
+              {isSold ? "ขายแล้ว" : "มีจำหน่าย"}
             </Badge>
           </div>
 
@@ -99,7 +99,7 @@ const CarCard = ({ car, index }: CarCardProps) => {
               className="w-full gap-2 h-11 cursor-pointer"
               disabled={isSold}
             >
-              {isSold ? "Not Available" : "View Details"}
+              {isSold ? "ไม่มีจำหน่าย" : "ดูรายละเอียด"}
               {!isSold && <ArrowRight className="h-4 w-4" />}
             </Button>
           </Link>

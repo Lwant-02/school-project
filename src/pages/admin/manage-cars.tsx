@@ -50,7 +50,7 @@ export const ManageCars = () => {
     setLoading(true);
     getCars()
       .then(setCars)
-      .catch(() => setError("Failed to load cars."))
+      .catch(() => setError("โหลดข้อมูลรถยนต์ล้มเหลว"))
       .finally(() => setLoading(false));
   };
 
@@ -63,7 +63,7 @@ export const ManageCars = () => {
       const updated = await updateCar(car.id, { status: "sold" });
       setCars((prev) => prev.map((c) => (c.id === car.id ? updated : c)));
     } catch {
-      setError("Failed to update status.");
+      setError("อัปเดตสถานะล้มเหลว");
     }
   };
 
@@ -75,7 +75,7 @@ export const ManageCars = () => {
       setCars((prev) => prev.filter((c) => c.id !== deleteTarget.id));
       setDeleteTarget(null);
     } catch {
-      setError("Failed to delete car.");
+      setError("ลบรถยนต์ล้มเหลว");
     } finally {
       setDeleting(false);
     }
@@ -85,17 +85,15 @@ export const ManageCars = () => {
     <div className="space-y-6 px-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Manage Cars</h1>
+          <h1 className="text-2xl font-bold text-foreground">จัดการรถยนต์</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            {loading
-              ? "Loading…"
-              : `${cars.length} listing${cars.length !== 1 ? "s" : ""}`}
+            {loading ? "กำลังโหลด..." : `${cars.length} รายการ`}
           </p>
         </div>
         <Link to="/admin/dashboard/cars/new">
           <Button className="gap-2 cursor-pointer w-32 h-10">
             <Plus className="h-4 w-4" />
-            Add Car
+            เพิ่มรถยนต์
           </Button>
         </Link>
       </div>
@@ -106,13 +104,13 @@ export const ManageCars = () => {
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50">
-              <TableHead className="w-16">Image</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead>Brand</TableHead>
-              <TableHead>Year</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead className="w-16">รูปภาพ</TableHead>
+              <TableHead>ชื่อรุ่น</TableHead>
+              <TableHead>ยี่ห้อ</TableHead>
+              <TableHead>ปี</TableHead>
+              <TableHead>ราคา</TableHead>
+              <TableHead>สถานะ</TableHead>
+              <TableHead className="text-right">จัดการ</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -165,7 +163,7 @@ export const ManageCars = () => {
                             : "bg-red-500/90 text-white hover:bg-red-500/90"
                         }
                       >
-                        {car.status === "available" ? "Available" : "Sold"}
+                        {car.status === "available" ? "มีจำหน่าย" : "ขายแล้ว"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
@@ -177,7 +175,7 @@ export const ManageCars = () => {
                             className="cursor-pointer"
                           >
                             <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Open menu</span>
+                            <span className="sr-only">เปิดเมนู</span>
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-40">
@@ -188,7 +186,7 @@ export const ManageCars = () => {
                             }
                           >
                             <Eye className="h-4 w-4 mr-2" />
-                            View
+                            ดูข้อมูล
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             className="cursor-pointer"
@@ -197,7 +195,7 @@ export const ManageCars = () => {
                             }
                           >
                             <Pencil className="h-4 w-4 mr-2" />
-                            Edit
+                            แก้ไข
                           </DropdownMenuItem>
                           {car.status === "available" && (
                             <DropdownMenuItem
@@ -205,7 +203,7 @@ export const ManageCars = () => {
                               onClick={() => handleMarkSold(car)}
                             >
                               <CheckCheck className="h-4 w-4 mr-2" />
-                              Mark as Sold
+                              เปลี่ยนสถานะเป็นขายแล้ว
                             </DropdownMenuItem>
                           )}
                           <DropdownMenuSeparator />
@@ -214,7 +212,7 @@ export const ManageCars = () => {
                             onClick={() => setDeleteTarget(car)}
                           >
                             <Trash2 className="h-4 w-4 mr-2" />
-                            Delete
+                            ลบ
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -232,13 +230,13 @@ export const ManageCars = () => {
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete Listing</DialogTitle>
+            <DialogTitle>ลบรายการ</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete{" "}
+              คุณแน่ใจหรือไม่ว่าต้องการลบ{" "}
               <span className="font-semibold text-foreground">
                 {deleteTarget?.title}
               </span>
-              ? This action cannot be undone.
+              ? การกระทำนี้ไม่สามารถย้อนกลับได้
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -246,17 +244,17 @@ export const ManageCars = () => {
               variant="outline"
               onClick={() => setDeleteTarget(null)}
               disabled={deleting}
-              className="cursor-pointer"
+              className="cursor-pointer w-32"
             >
-              Cancel
+              ยกเลิก
             </Button>
             <Button
               variant="destructive"
               onClick={handleDelete}
               disabled={deleting}
-              className="cursor-pointer"
+              className="cursor-pointer w-32"
             >
-              {deleting ? "Deleting…" : "Delete"}
+              {deleting ? "กำลังลบ..." : "ลบ"}
             </Button>
           </DialogFooter>
         </DialogContent>

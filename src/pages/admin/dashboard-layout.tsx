@@ -17,7 +17,7 @@ export const DashboardLayout = () => {
           <SidebarTrigger className="-ml-2 cursor-pointer" />
           <Separator orientation="vertical" className="mr-2 h-4" />
           <span className="text-sm font-medium text-muted-foreground">
-            Admin Dashboard
+            แดชบอร์ดผู้ดูแลระบบ
           </span>
         </header>
         <main className="flex-1 overflow-auto p-6">

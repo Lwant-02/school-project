@@ -48,9 +48,9 @@ const CarGrid = ({ cars, isLoading = false }: CarGridProps) => {
           <SearchX className="h-9 w-9 text-muted-foreground" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold">No cars found</h3>
+          <h3 className="text-lg font-semibold">ไม่พบรถยนต์</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Try adjusting your search or filter criteria.
+            ลองปรับการค้นหาหรือตัวกรองของคุณ
           </p>
         </div>
       </motion.div>

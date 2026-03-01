@@ -12,7 +12,7 @@ const HeroSection = ({ onScrollToListings }: HeroSectionProps) => {
       {/* Background image */}
       <img
         src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&auto=format&fit=crop&q=85"
-        alt="Luxury car on scenic road"
+        alt="รถหรูบนถนนที่สวยงาม"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
 
@@ -29,7 +29,7 @@ const HeroSection = ({ onScrollToListings }: HeroSectionProps) => {
         >
           {/* Featured label */}
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-white/60">
-            Featured Listing
+            รายการแนะนำ
           </p>
 
           {/* Price */}
@@ -48,15 +48,15 @@ const HeroSection = ({ onScrollToListings }: HeroSectionProps) => {
           <div className="mb-8 flex flex-wrap gap-5 text-sm text-white/75">
             <span className="flex items-center gap-1.5">
               <Fuel className="h-4 w-4" />
-              Petrol
+              เบนซิน
             </span>
             <span className="flex items-center gap-1.5">
               <Gauge className="h-4 w-4" />
-              30,000 km
+              30,000 กม.
             </span>
             <span className="flex items-center gap-1.5">
               <Settings2 className="h-4 w-4" />
-              Automatic
+              ออโต้
             </span>
           </div>
 
@@ -66,7 +66,7 @@ const HeroSection = ({ onScrollToListings }: HeroSectionProps) => {
             size="lg"
             className="gap-2 cursor-pointer rounded-full bg-white px-7 text-sm font-semibold text-zinc-900 shadow-lg hover:bg-zinc-100"
           >
-            View All Listings
+            ดูรถยนต์ทั้งหมด
             <ArrowUpRight className="h-4 w-4" />
           </Button>
         </motion.div>

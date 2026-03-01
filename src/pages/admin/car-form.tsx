@@ -60,7 +60,7 @@ export const CarForm = () => {
         const { id: _id, createdAt: _ca, ...rest } = car;
         setForm(rest);
       })
-      .catch(() => setError("Failed to load car."))
+      .catch(() => setError("โหลดข้อมูลรถยนต์ล้มเหลว"))
       .finally(() => setLoading(false));
   }, [id, isNew]);
 
@@ -80,7 +80,7 @@ export const CarForm = () => {
       }
       navigate("/admin/dashboard/cars");
     } catch {
-      setError("Failed to save car. Please try again.");
+      setError("บันทึกข้อมูลรถยนต์ล้มเหลว โปรดลองอีกครั้ง");
     } finally {
       setSaving(false);
     }
@@ -107,12 +107,10 @@ export const CarForm = () => {
         </Button>
         <div>
           <h1 className="text-2xl font-bold text-foreground">
-            {isNew ? "Add New Car" : "Edit Car"}
+            {isNew ? "เพิ่มรถยนต์ใหม่" : "แก้ไขข้อมูลรถยนต์"}
           </h1>
           <p className="text-sm text-muted-foreground">
-            {isNew
-              ? "Fill in the details below."
-              : "Update the listing details."}
+            {isNew ? "กรอกรายละเอียดด้านล่าง" : "อัปเดตรายละเอียดรายการ"}
           </p>
         </div>
       </div>
@@ -127,7 +125,7 @@ export const CarForm = () => {
         className="space-y-5 rounded-xl border border-border bg-card p-6 shadow-sm"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <Field label="Title">
+          <Field label="ชื่อรุ่น">
             <Input
               value={form.title}
               onChange={(e) => set("title", e.target.value)}
@@ -136,7 +134,7 @@ export const CarForm = () => {
               className="btn"
             />
           </Field>
-          <Field label="Brand">
+          <Field label="ยี่ห้อ">
             <Input
               value={form.brand}
               onChange={(e) => set("brand", e.target.value)}
@@ -145,7 +143,7 @@ export const CarForm = () => {
               className="btn"
             />
           </Field>
-          <Field label="Model">
+          <Field label="รุ่น">
             <Input
               value={form.model}
               onChange={(e) => set("model", e.target.value)}
@@ -154,7 +152,7 @@ export const CarForm = () => {
               className="btn"
             />
           </Field>
-          <Field label="Year">
+          <Field label="ปี">
             <Input
               type="number"
               value={form.year}
@@ -165,7 +163,7 @@ export const CarForm = () => {
               className="btn"
             />
           </Field>
-          <Field label="Price ($)">
+          <Field label="ราคา">
             <Input
               type="number"
               value={form.price}
@@ -175,7 +173,7 @@ export const CarForm = () => {
               className="btn"
             />
           </Field>
-          <Field label="Mileage (km)">
+          <Field label="ระยะทาง (กม.)">
             <Input
               type="number"
               value={form.mileage}
@@ -186,7 +184,7 @@ export const CarForm = () => {
             />
           </Field>
 
-          <Field label="Fuel Type">
+          <Field label="ประเภทเชื้อเพลิง">
             <Select
               value={form.fuelType}
               onValueChange={(v) => set("fuelType", v as FuelType)}
@@ -195,18 +193,21 @@ export const CarForm = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {(["Petrol", "Diesel", "Electric", "Hybrid"] as FuelType[]).map(
-                  (f) => (
-                    <SelectItem key={f} value={f}>
-                      {f}
-                    </SelectItem>
-                  ),
-                )}
+                {[
+                  { value: "Petrol", label: "เบนซิน" },
+                  { value: "Diesel", label: "ดีเซล" },
+                  { value: "Electric", label: "ไฟฟ้า" },
+                  { value: "Hybrid", label: "ไฮบริด" },
+                ].map((f) => (
+                  <SelectItem key={f.value} value={f.value}>
+                    {f.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </Field>
 
-          <Field label="Transmission">
+          <Field label="ระบบเกียร์">
             <Select
               value={form.transmission}
               onValueChange={(v) => set("transmission", v as Transmission)}
@@ -215,16 +216,19 @@ export const CarForm = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {(["Automatic", "Manual"] as Transmission[]).map((t) => (
-                  <SelectItem key={t} value={t}>
-                    {t}
+                {[
+                  { value: "Automatic", label: "ออโต้" },
+                  { value: "Manual", label: "ธรรมดา" },
+                ].map((t) => (
+                  <SelectItem key={t.value} value={t.value}>
+                    {t.label}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </Field>
 
-          <Field label="Status">
+          <Field label="สถานะ">
             <Select
               value={form.status}
               onValueChange={(v) => set("status", v as CarStatus)}
@@ -233,13 +237,13 @@ export const CarForm = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="available">Available</SelectItem>
-                <SelectItem value="sold">Sold</SelectItem>
+                <SelectItem value="available">มีจำหน่าย</SelectItem>
+                <SelectItem value="sold">ขายแล้ว</SelectItem>
               </SelectContent>
             </Select>
           </Field>
 
-          <Field label="Image URL">
+          <Field label="ลิงก์รูปภาพ">
             <Input
               value={form.image}
               onChange={(e) => set("image", e.target.value)}
@@ -249,11 +253,11 @@ export const CarForm = () => {
           </Field>
         </div>
 
-        <Field label="Description">
+        <Field label="คำอธิบาย">
           <textarea
             value={form.description}
             onChange={(e) => set("description", e.target.value)}
-            placeholder="Well maintained, single owner…"
+            placeholder="สภาพดี เจ้าของมือเดียว..."
             rows={4}
             className="w-full rounded-sm focus:right-1! border px-3 py-2 text-foreground resize-none"
           />
@@ -281,7 +285,7 @@ export const CarForm = () => {
             disabled={saving}
             className="cursor-pointer w-40 h-10"
           >
-            Cancel
+            ยกเลิก
           </Button>
           <Button
             type="submit"
@@ -289,7 +293,7 @@ export const CarForm = () => {
             className="cursor-pointer gap-2 w-40 h-10"
           >
             {saving && <Loader className="h-4 w-4 animate-spin" />}
-            {isNew ? "Add Car" : "Save Changes"}
+            {isNew ? "เพิ่มรถยนต์" : "บันทึกการเปลี่ยนแปลง"}
           </Button>
         </div>
       </motion.form>

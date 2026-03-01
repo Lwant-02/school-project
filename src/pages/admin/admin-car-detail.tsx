@@ -50,7 +50,7 @@ export const AdminCarDetail = () => {
   useEffect(() => {
     getCarById(id!)
       .then(setCar)
-      .catch(() => setError("Failed to load car."))
+      .catch(() => setError("โหลดข้อมูลรถยนต์ล้มเหลว"))
       .finally(() => setLoading(false));
   }, [id]);
 
@@ -71,9 +71,9 @@ export const AdminCarDetail = () => {
           onClick={() => navigate(-1)}
           className="gap-2 cursor-pointer"
         >
-          <ArrowLeft className="h-4 w-4" /> Back
+          <ArrowLeft className="h-4 w-4" /> กลับ
         </Button>
-        <p className="text-sm text-destructive">{error || "Car not found."}</p>
+        <p className="text-sm text-destructive">{error || "ไม่พบรถยนต์"}</p>
       </div>
     );
   }
@@ -94,7 +94,7 @@ export const AdminCarDetail = () => {
         </h1>
         <Link to={`/admin/dashboard/cars/${car.id}`}>
           <Button className="gap-2 cursor-pointer w-32 h-10">
-            <Pencil className="h-3.5 w-3.5" /> Edit
+            <Pencil className="h-3.5 w-3.5" /> แก้ไข
           </Button>
         </Link>
       </div>
@@ -124,7 +124,7 @@ export const AdminCarDetail = () => {
                   : "bg-red-500/90 text-white hover:bg-red-500/90"
               }
             >
-              {car.status === "available" ? "Available" : "Sold"}
+              {car.status === "available" ? "มีจำหน่าย" : "ขายแล้ว"}
             </Badge>
           </div>
         </div>
@@ -144,29 +144,29 @@ export const AdminCarDetail = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <Spec icon={Calendar} label="Year" value={car.year} />
+            <Spec icon={Calendar} label="ปี" value={car.year} />
             <Spec
               icon={Gauge}
-              label="Mileage"
-              value={`${car.mileage.toLocaleString()} km`}
+              label="ระยะทาง"
+              value={`${car.mileage.toLocaleString()} กม.`}
             />
-            <Spec icon={Fuel} label="Fuel" value={car.fuelType} />
+            <Spec icon={Fuel} label="เชื้อเพลิง" value={car.fuelType} />
             <Spec
               icon={Settings2}
-              label="Transmission"
+              label="ระบบเกียร์"
               value={car.transmission}
             />
             <Spec
               icon={DollarSign}
-              label="Price"
-              value={`$${car.price.toLocaleString()}`}
+              label="ราคา"
+              value={`฿${car.price.toLocaleString()}`}
             />
           </div>
 
           {car.description && (
             <div>
               <p className="text-sm font-medium text-foreground mb-1.5">
-                Description
+                คำอธิบาย
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {car.description}
@@ -175,7 +175,7 @@ export const AdminCarDetail = () => {
           )}
 
           <p className="text-xs text-muted-foreground border-t border-border pt-4">
-            Listed on{" "}
+            ลงประกาศเมื่อ{" "}
             {parseCreatedAt(car.createdAt).toLocaleDateString(undefined, {
               year: "numeric",
               month: "long",

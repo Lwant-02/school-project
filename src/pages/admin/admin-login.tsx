@@ -39,7 +39,7 @@ export const AdminLogin = () => {
       localStorage.setItem("isAdmin", "true");
       navigate("/admin/dashboard");
     } else {
-      setError("Invalid email or password. Please try again.");
+      setError("อีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดลองอีกครั้ง");
     }
 
     setIsLoading(false);
@@ -73,10 +73,10 @@ export const AdminLogin = () => {
             </motion.div>
             <div className="space-y-1">
               <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
-                Admin Access
+                เข้าใช้ระบบแอดมิน
               </CardTitle>
               <CardDescription className="text-muted-foreground">
-                Enter your credentials to manage the fleet.
+                กรอกข้อมูลของคุณเพื่อจัดการระบบ
               </CardDescription>
             </div>
           </CardHeader>
@@ -98,7 +98,7 @@ export const AdminLogin = () => {
                   className="text-sm font-medium text-foreground"
                   htmlFor="email"
                 >
-                  Email
+                  อีเมล
                 </label>
                 <div className="relative group">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
@@ -119,7 +119,7 @@ export const AdminLogin = () => {
                   className="text-sm font-medium text-foreground"
                   htmlFor="password"
                 >
-                  Password
+                  รหัสผ่าน
                 </label>
                 <div className="relative group">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
@@ -154,7 +154,7 @@ export const AdminLogin = () => {
                     </motion.div>
                   ) : (
                     <>
-                      Sign In
+                      เข้าสู่ระบบ
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </>
                   )}
@@ -164,7 +164,7 @@ export const AdminLogin = () => {
           </CardContent>
           <CardFooter className="justify-center border-t border-border pt-6 pb-6">
             <p className="text-sm text-muted-foreground">
-              Only authorized personnel.
+              เฉพาะเจ้าหน้าที่ที่ได้รับอนุญาตเท่านั้น
             </p>
           </CardFooter>
         </Card>

@@ -28,13 +28,13 @@ const Navbar = ({
             onClick={scrollToListings}
             className="text-sm font-medium cursor-pointer text-white/80 transition-colors hover:text-white"
           >
-            Browse Cars
+            เลือกดูรถยนต์
           </span>
           <span
             onClick={scrollToFooter}
             className="text-sm cursor-pointer font-medium text-white/80 transition-colors hover:text-white"
           >
-            Contact
+            ติดต่อเรา
           </span>
         </nav>
 
@@ -46,7 +46,7 @@ const Navbar = ({
             className="gap-2 h-10 cursor-pointer border-gray-50/30 bg-gray-50 text-black backdrop-blur-sm hover:bg-gray-50/90 hover:text-black"
           >
             <ShieldCheck className="h-4 w-4" />
-            Admin Login
+            เข้าสู่ระบบแอดมิน
           </Button>
         </Link>
       </div>
