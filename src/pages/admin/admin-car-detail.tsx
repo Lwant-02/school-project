@@ -151,11 +151,7 @@ export const AdminCarDetail = () => {
               value={`${car.mileage.toLocaleString()} กม.`}
             />
             <Spec icon={Fuel} label="เชื้อเพลิง" value={car.fuelType} />
-            <Spec
-              icon={Settings2}
-              label="ระบบเกียร์"
-              value={car.transmission}
-            />
+            <Spec icon={Settings2} label="ระบบเกียร์" value={car.gear} />
             <Spec
               icon={DollarSign}
               label="ราคา"

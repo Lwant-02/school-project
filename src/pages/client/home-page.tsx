@@ -19,7 +19,7 @@ const defaultFilters: FilterState = {
   search: "",
   brand: "all",
   fuelType: "all",
-  transmission: "all",
+  gear: "all",
   status: "all",
   sortBy: "newest",
 };
@@ -69,11 +69,9 @@ const HomePage = () => {
       filtered = filtered.filter((c) => c.fuelType === filters.fuelType);
     }
 
-    // Transmission
-    if (filters.transmission !== "all") {
-      filtered = filtered.filter(
-        (c) => c.transmission === filters.transmission,
-      );
+    // gear
+    if (filters.gear !== "all") {
+      filtered = filtered.filter((c) => c.gear === filters.gear);
     }
 
     // Status

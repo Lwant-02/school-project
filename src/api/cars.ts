@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Car } from "@/types/car";
 
-const BASE_URL = "https://69a14c0b2e82ee536fa0c54e.mockapi.io/api/v1/car";
+const BASE_URL = "https://69a3d36d611ecf5bfc2390c8.mockapi.io/car/cars";
 
 export const api = axios.create({ baseURL: BASE_URL });
 

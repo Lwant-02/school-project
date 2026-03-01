@@ -16,7 +16,7 @@ const cars = [
     price: 24500,
     mileage: 18000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
     description:
@@ -31,7 +31,7 @@ const cars = [
     price: 38000,
     mileage: 22000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&auto=format&fit=crop&q=80",
     description:
@@ -46,7 +46,7 @@ const cars = [
     price: 42000,
     mileage: 8000,
     fuelType: "Electric",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&auto=format&fit=crop&q=80",
     description:
@@ -61,7 +61,7 @@ const cars = [
     price: 35000,
     mileage: 35000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&auto=format&fit=crop&q=80",
     description:
@@ -76,7 +76,7 @@ const cars = [
     price: 31000,
     mileage: 41000,
     fuelType: "Petrol",
-    transmission: "Manual",
+    gear: "Manual",
     image:
       "https://images.unsplash.com/photo-1584345604476-8ec5f452d1f2?w=800&auto=format&fit=crop&q=80",
     description:
@@ -91,7 +91,7 @@ const cars = [
     price: 21000,
     mileage: 11000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&auto=format&fit=crop&q=80",
     description:
@@ -106,7 +106,7 @@ const cars = [
     price: 36500,
     mileage: 28000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&auto=format&fit=crop&q=80",
     description:
@@ -121,7 +121,7 @@ const cars = [
     price: 98000,
     mileage: 15000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1503736334956-4c8f8e4733cc?w=800&auto=format&fit=crop&q=80",
     description:
@@ -136,7 +136,7 @@ const cars = [
     price: 62000,
     mileage: 19000,
     fuelType: "Diesel",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&auto=format&fit=crop&q=80",
     description:
@@ -151,7 +151,7 @@ const cars = [
     price: 220000,
     mileage: 9000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&auto=format&fit=crop&q=80",
     description:
@@ -166,7 +166,7 @@ const cars = [
     price: 280000,
     mileage: 12000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=800&auto=format&fit=crop&q=80",
     description:
@@ -181,7 +181,7 @@ const cars = [
     price: 27500,
     mileage: 14000,
     fuelType: "Petrol",
-    transmission: "Manual",
+    gear: "Manual",
     image:
       "https://images.unsplash.com/photo-1471444928139-48c5bf5173f8?w=800&auto=format&fit=crop&q=80",
     description:
@@ -196,7 +196,7 @@ const cars = [
     price: 48000,
     mileage: 26000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&auto=format&fit=crop&q=80",
     description:
@@ -211,7 +211,7 @@ const cars = [
     price: 72000,
     mileage: 7000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
     description:
@@ -226,7 +226,7 @@ const cars = [
     price: 31000,
     mileage: 9000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&auto=format&fit=crop&q=80",
     description:
@@ -241,7 +241,7 @@ const cars = [
     price: 115000,
     mileage: 18000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&auto=format&fit=crop&q=80",
     description:
@@ -256,7 +256,7 @@ const cars = [
     price: 46000,
     mileage: 5000,
     fuelType: "Electric",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&auto=format&fit=crop&q=80",
     description:
@@ -271,7 +271,7 @@ const cars = [
     price: 85000,
     mileage: 30000,
     fuelType: "Diesel",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&auto=format&fit=crop&q=80",
     description:
@@ -286,7 +286,7 @@ const cars = [
     price: 85000,
     mileage: 12000,
     fuelType: "Petrol",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
     description:
@@ -301,7 +301,7 @@ const cars = [
     price: 118000,
     mileage: 21000,
     fuelType: "Hybrid",
-    transmission: "Automatic",
+    gear: "Automatic",
     image:
       "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&auto=format&fit=crop&q=80",
     description:

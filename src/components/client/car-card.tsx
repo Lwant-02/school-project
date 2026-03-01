@@ -87,7 +87,7 @@ const CarCard = ({ car, index }: CarCardProps) => {
             </span>
             <span className="flex items-center gap-1">
               <Cog className="h-3.5 w-3.5" />
-              {car.transmission}
+              {car.gear}
             </span>
           </div>
         </CardContent>

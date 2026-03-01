@@ -10,13 +10,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import type { FuelType, Transmission, CarStatus } from "@/types/car";
+import type { FuelType, CarStatus, GearType } from "@/types/car";
 
 export interface FilterState {
   search: string;
   brand: string;
   fuelType: FuelType | "all";
-  transmission: Transmission | "all";
+  gear: GearType | "all";
   status: CarStatus | "all";
   sortBy: "newest" | "price-asc" | "price-desc" | "mileage";
 }
@@ -51,7 +51,7 @@ const FilterBar = ({
   const hasActiveFilters =
     filters.brand !== "all" ||
     filters.fuelType !== "all" ||
-    filters.transmission !== "all" ||
+    filters.gear !== "all" ||
     filters.status !== "all";
 
   const clearAll = () =>
@@ -59,7 +59,7 @@ const FilterBar = ({
       search: "",
       brand: "all",
       fuelType: "all",
-      transmission: "all",
+      gear: "all",
       status: "all",
       sortBy: "newest",
     });
@@ -161,11 +161,11 @@ const FilterBar = ({
               </SelectContent>
             </Select>
 
-            {/* Transmission */}
+            {/* gear */}
             <Select
-              value={filters.transmission}
+              value={filters.gear}
               onValueChange={(val) =>
-                update({ transmission: val as FilterState["transmission"] })
+                update({ gear: val as FilterState["gear"] })
               }
             >
               <SelectTrigger className="w-40">

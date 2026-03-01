@@ -1,5 +1,5 @@
 export type FuelType = "Petrol" | "Diesel" | "Electric" | "Hybrid";
-export type Transmission = "Automatic" | "Manual";
+export type GearType = "Automatic" | "Manual";
 export type CarStatus = "available" | "sold";
 
 export interface Car {
@@ -11,7 +11,7 @@ export interface Car {
   price: number;
   mileage: number;
   fuelType: FuelType;
-  transmission: Transmission;
+  gear: GearType;
   image: string;
   description: string;
   status: CarStatus;

@@ -19,7 +19,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getCarById } from "@/api/cars";
+import { getCarById, updateCar } from "@/api/cars";
 import type { Car as CarType } from "@/types/car";
 import { useEffect, useState } from "react";
 
@@ -51,6 +51,20 @@ const CarDetailPage = () => {
   const navigate = useNavigate();
   const [car, setCar] = useState<CarType | null>(null);
   const [loading, setLoading] = useState(true);
+  const [buying, setBuying] = useState(false);
+
+  const handleBuy = async () => {
+    if (!car || car.status === "sold") return;
+    setBuying(true);
+    try {
+      const updated = await updateCar(car.id, { status: "sold" });
+      setCar(updated);
+    } catch (err) {
+      console.error("Failed to buy car", err);
+    } finally {
+      setBuying(false);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -167,7 +181,7 @@ const CarDetailPage = () => {
               </span>
               <span className="flex items-center gap-1.5">
                 <Settings2 className="h-5 w-5" />
-                {car.transmission}
+                {car.gear}
               </span>
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-5 w-5" />
@@ -216,7 +230,7 @@ const CarDetailPage = () => {
                 {specItem(
                   <Settings2 className="h-5 w-5" />,
                   "ระบบเกียร์",
-                  car.transmission,
+                  car.gear,
                 )}
                 {specItem(
                   <Gauge className="h-5 w-5" />,
@@ -253,10 +267,27 @@ const CarDetailPage = () => {
                   รถคันนี้ขายแล้ว
                 </Button>
               ) : (
-                <Button className="w-full h-11 gap-2">
-                  <Phone className="h-4 w-4" />
-                  ติดต่อผู้ขาย
-                </Button>
+                <div className="flex flex-col gap-3">
+                  <Button
+                    onClick={handleBuy}
+                    disabled={buying}
+                    className="w-full h-11 gap-2 cursor-pointer"
+                  >
+                    {buying ? (
+                      <Loader className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <CheckCircle2 className="h-4 w-4" />
+                    )}
+                    {buying ? "กำลังดำเนินการ..." : "ซื้อรถคันนี้"}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full h-11 gap-2 cursor-pointer"
+                  >
+                    <Phone className="h-4 w-4" />
+                    ติดต่อผู้ขาย
+                  </Button>
+                </div>
               )}
             </div>
 

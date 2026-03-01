@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Loader } from "lucide-react";
 import { getCarById, createCar, updateCar } from "@/api/cars";
-import type { Car, FuelType, Transmission, CarStatus } from "@/types/car";
+import type { Car, FuelType, CarStatus, GearType } from "@/types/car";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -24,7 +24,7 @@ const empty: FormData = {
   price: 0,
   mileage: 0,
   fuelType: "Petrol",
-  transmission: "Automatic",
+  gear: "Automatic",
   image: "",
   description: "",
   status: "available",
@@ -209,8 +209,8 @@ export const CarForm = () => {
 
           <Field label="ระบบเกียร์">
             <Select
-              value={form.transmission}
-              onValueChange={(v) => set("transmission", v as Transmission)}
+              value={form.gear}
+              onValueChange={(v) => set("gear", v as GearType)}
             >
               <SelectTrigger className="h-10! w-full">
                 <SelectValue />
